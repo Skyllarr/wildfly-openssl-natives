@@ -1,4 +1,4 @@
-name: Build Natives
+name: Build Natives Test
 on:
   pull_request:
     branches:
