@@ -36,8 +36,7 @@ jobs:
       - if: matrix.os == 'windows-latest'
         name: Install Full OpenSSL Library
         run: |
-          vcpkg update
-          vcpkg install openssl
+          choco install openssl.light
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
         run: mvn -B package --file pom.xml
