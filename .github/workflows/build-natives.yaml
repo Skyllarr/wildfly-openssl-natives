@@ -42,11 +42,7 @@ jobs:
         run: mvn -B package --file pom.xml
       - if: matrix.os == 'windows-latest'
         name: Build with Microsoft Visual Studio native tools command prompt and Maven
-        env:
-          VCVARS: ${{ matrix.vcvars }}
-        shell: cmd
         run: |
-          call "%VCVARS%"
           mvn -B package --file pom.xml
       - if: ${{ github.event_name == 'push' }}
         name: Archive the built native artifacts if this is a tag
