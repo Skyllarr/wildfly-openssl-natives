@@ -43,9 +43,8 @@ jobs:
         run: mvn -B package --file pom.xml
       - if: matrix.os == 'windows-latest'
         name: Build with Microsoft Visual Studio native tools command prompt and Maven
-        steps: 
-        - uses: actions/checkout@v2
-        - uses: ilammy/msvc-dev-cmd@v1
+        uses: actions/checkout@v2
+        uses: ilammy/msvc-dev-cmd@v1
         run: |
           mvn -B package --file pom.xml
       - if: ${{ github.event_name == 'push' }}
