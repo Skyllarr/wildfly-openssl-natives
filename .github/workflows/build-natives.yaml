@@ -37,6 +37,7 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           vcpkg install openssl
+          openssl version -v
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
         run: mvn -B package --file pom.xml
@@ -46,7 +47,7 @@ jobs:
           VCVARS: ${{ matrix.vcvars }}
         shell: cmd
         run: |
-          call "%VCVARS%"
+          call "%VCVARS%" x64
           mvn -B package --file pom.xml
       - if: ${{ github.event_name == 'push' }}
         name: Archive the built native artifacts if this is a tag
