@@ -43,8 +43,12 @@ jobs:
           git checkout 09adfdc8cdad76345b7cc7f3305899e1cbd66297
           vcpkg upgrade
           vcpkg upgrade --no-dry-run
+          vcpkg integrate install
           openssl version -v
           vcpkg search openssl
+          echo "C:\directory\to\add\to\path" >> $GITHUB_PATH
+          openssl version -v
+
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
         run: mvn -B package --file pom.xml
