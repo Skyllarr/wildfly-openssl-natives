@@ -39,9 +39,6 @@ jobs:
           vcpkg upgrade
           vcpkg install openssl
           vcpkg list openssl
-          git fetch https://github.com/microsoft/vcpkg 09adfdc8cdad76345b7cc7f3305899e1cbd66297
-          git checkout 09adfdc8cdad76345b7cc7f3305899e1cbd66297
-          vcpkg upgrade
           vcpkg upgrade --no-dry-run
           vcpkg integrate install
           openssl version -v
