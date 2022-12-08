@@ -39,6 +39,8 @@ jobs:
           vcpkg upgrade
           vcpkg install openssl
           vcpkg list openssl
+          vcpkg upgrade
+          vcpkg upgrade --no-dry-run
           openssl version -v
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
