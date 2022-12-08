@@ -36,7 +36,9 @@ jobs:
       - if: matrix.os == 'windows-latest'
         name: Install Full OpenSSL Library
         run: |
+          vcpkg upgrade
           vcpkg install openssl
+          vcpkg list openssl
           openssl version -v
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
