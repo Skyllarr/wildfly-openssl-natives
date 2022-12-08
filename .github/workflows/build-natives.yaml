@@ -45,7 +45,8 @@ jobs:
           vcpkg search openssl
           echo "C:\directory\to\add\to\path" >> $GITHUB_PATH
           openssl version -v
-
+          echo "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl" >> $GITHUB_PATH
+          openssl version -v
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
         env:
