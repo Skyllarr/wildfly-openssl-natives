@@ -22,7 +22,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Find openssl
+      - if: matrix.os == 'windows-latest'
+        name: Find openssl
         run: where openssl
       - name: Cache Maven packages
         uses: actions/cache@v2
