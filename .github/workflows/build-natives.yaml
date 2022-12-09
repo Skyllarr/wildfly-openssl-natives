@@ -22,6 +22,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Find openssl
+        run: where openssl
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
@@ -38,13 +40,12 @@ jobs:
         run: |
           vcpkg remove openssl --recurse
           vcpkg upgrade
-          vcpkg install openssl
+          vcpkg install openssl:x64-windows
           vcpkg list openssl
           vcpkg upgrade --no-dry-run
           vcpkg integrate install
           openssl version -v
           vcpkg search openssl
-          echo "C:\directory\to\add\to\path" >> $GITHUB_PATH
           openssl version -v
           echo "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl" >> $GITHUB_PATH
           openssl version -v
