@@ -40,7 +40,6 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           echo $Env:PATH
-#          wmic product get name,version
           set PATH="C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;$Env:PATH";
           echo $Env:PATH
           openssl version -v
@@ -61,7 +60,6 @@ jobs:
           openssl version
           vcpkg search openssl
           openssl version -v
-#          echo "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl" >> $GITHUB_PATH
           openssl version -v
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
