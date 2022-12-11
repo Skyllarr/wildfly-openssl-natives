@@ -39,6 +39,8 @@ jobs:
       - if: matrix.os == 'windows-latest'
         name: Install Full OpenSSL Library
         run: |
+          choco uninstall openssl
+          choco uninstall openssl.light
           vcpkg remove openssl --recurse
           vcpkg upgrade
           vcpkg install openssl:x64-windows
