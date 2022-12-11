@@ -60,9 +60,9 @@ jobs:
           Get-ChildItem "C:\Users\runneradmin\AppData\Local\vcpkg"
           Get-ChildItem "C:\vcpkg\packages\"
           Get-ChildItem "C:\vcpkg\packages\openssl_x64-windows\share\openssl"
-          Get-ChildItem "C:\vcpkg"
-          Get-ChildItem "C:\Program Files\OpenSSL-Win64\bin"
-          Get-ChildItem "C:\Program Files\OpenSSL-Win64"
+          Get-ChildItem "C:\vcpkg\installed"
+          Get-ChildItem "C:\vcpkg\installed\x86-windows"
+          Get-ChildItem "C:\vcpkg\installed\x86-windows\tools"
           setx path "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;%path%"
           openssl version -v
           openssl version
