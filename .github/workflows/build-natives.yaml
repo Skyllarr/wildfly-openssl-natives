@@ -40,8 +40,11 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           echo $Env:PATH
-          wmic product get name,version
+#          wmic product get name,version
+          set PATH="C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;$Env:PATH";
+          echo $Env:PATH
           openssl version -v
+          openssl version
           choco uninstall openssl
           choco uninstall openssl.light
           vcpkg remove openssl --recurse
@@ -51,12 +54,14 @@ jobs:
           vcpkg list openssl
           vcpkg upgrade --no-dry-run
           vcpkg integrate install
-          set PATH=C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;$Env:PATH;
+          setx path "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;%path%"
+          set PATH="C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;$Env:PATH";
           echo $Env:PATH
           openssl version -v
+          openssl version
           vcpkg search openssl
           openssl version -v
-          echo "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl" >> $GITHUB_PATH
+#          echo "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl" >> $GITHUB_PATH
           openssl version -v
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
