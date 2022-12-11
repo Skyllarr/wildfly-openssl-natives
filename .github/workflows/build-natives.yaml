@@ -24,7 +24,7 @@ jobs:
           java-version: 11
       - if: matrix.os == 'windows-latest'
         name: Find openssl
-        run: where openssl
+        run: Get-Command openssl
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
@@ -40,8 +40,7 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           echo $Env:PATH
-          $Env:PATH = "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;$Env:PATH";
-          echo $Env:PATH
+          Get-Command openssl
           openssl version -v
           openssl version
           choco uninstall openssl
@@ -54,7 +53,7 @@ jobs:
           vcpkg upgrade --no-dry-run
           vcpkg integrate install
           setx path "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;%path%"
-          set PATH="C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;$Env:PATH";
+          $Env:PATH = "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;$Env:PATH";
           echo $Env:PATH
           openssl version -v
           openssl version
