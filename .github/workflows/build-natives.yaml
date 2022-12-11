@@ -40,10 +40,12 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           echo %PATH%
+          echo $Env:PATH
           openssl version -v
           choco uninstall openssl
-          choco uninstall openssl.light -x
+          choco uninstall openssl.light
           vcpkg remove openssl --recurse
+          vcpkg remove openssl.light --recurse
           vcpkg upgrade
           vcpkg install openssl:x64-windows
           vcpkg list openssl
