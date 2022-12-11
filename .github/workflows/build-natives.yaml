@@ -51,6 +51,7 @@ jobs:
           vcpkg list openssl
           vcpkg upgrade --no-dry-run
           vcpkg integrate install
+          set PATH=C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;%PATH%;
           openssl version -v
           vcpkg search openssl
           openssl version -v
