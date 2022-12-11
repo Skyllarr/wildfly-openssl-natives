@@ -40,8 +40,9 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           Get-ChildItem "C:\Program Files\OpenSSL\bin"
-          Get-AppxPackage | Select Name, PackageFullName
-          Get-AppxPackage * openssl * | Remove-AppxPackage
+          echo $Env:PATH
+          $Env:PATH = "$Env:PATH:C:\Program Files\OpenSSL\bin;=%"
+          echo $Env:PATH
           echo $Env:PATH
           Get-Command openssl
           Get-ChildItem "C:\Program Files\OpenSSL\bin"
