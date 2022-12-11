@@ -41,6 +41,7 @@ jobs:
         run: |
           echo $Env:PATH
           rd -r "C:\Program Files\OpenSSL\bin"
+          wmic product get name,version
           openssl version -v
           choco uninstall openssl
           choco uninstall openssl.light
@@ -51,7 +52,7 @@ jobs:
           vcpkg list openssl
           vcpkg upgrade --no-dry-run
           vcpkg integrate install
-          set PATH=C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;%PATH%;
+          set PATH=C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;$Env:PATH;
           openssl version -v
           vcpkg search openssl
           openssl version -v
