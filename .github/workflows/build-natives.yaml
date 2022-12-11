@@ -40,7 +40,7 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           echo $Env:PATH
-          rmdir C:\Program Files\OpenSSL\bin
+          rmdir "C:\Program Files\OpenSSL\bin"
           openssl version -v
           choco uninstall openssl
           choco uninstall openssl.light
