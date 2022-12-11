@@ -40,7 +40,7 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           echo $Env:PATH
-          set PATH="C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;$Env:PATH";
+          $Env:PATH = "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;C:\Program Files\OpenSSL-Win64\bin;$Env:PATH";
           echo $Env:PATH
           openssl version -v
           openssl version
