@@ -42,7 +42,7 @@ jobs:
         env:
           path: C:\vcpkg\installed
         run: |          
-          $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl\bin;$Env:PATH"
+          $Env:PATH = C:\vcpkg\installed\x64-windows\tools\openssl\bin;$Env:PATH
           openssl version -v
           mvn -B package --file pom.xml
       - if: matrix.os == 'windows-latest'
