@@ -53,8 +53,7 @@ jobs:
         shell: cmd
         run: |
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64          
-          doskey openssl = "C:\vcpkg\installed\x64-windows\tools\openssl\openssl.exe"
-          openssl version -v
+          set PATH=C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%
           echo %PATH%
           openssl version -v
           mvn -B package --file pom.xml
