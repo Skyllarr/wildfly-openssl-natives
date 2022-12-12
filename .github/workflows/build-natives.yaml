@@ -39,8 +39,6 @@ jobs:
           vcpkg install openssl:x64-windows
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
-        env:
-          path: C:\vcpkg\installed
         run: |
           call "%VCVARS%" x64
           $Env:PATH = C:\vcpkg\installed\x64-windows\tools\openssl\bin;$Env:PATH
