@@ -50,10 +50,11 @@ jobs:
           VCVARS: ${{ matrix.vcvars }}
         shell: cmd
         run: |
-          set PATH="C:\vcpkg\installed\x64-windows\tools\openssl\bin;C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%"
-          echo %PATH%
+          $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl;$Env:PATH"
+          echo $Env:PATH
           call "%VCVARS%" x64
-          echo %PATH%
+          $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl;$Env:PATH"
+          echo $Env:PATH
           openssl version -v
           mvn -B package --file pom.xml
       - if: ${{ github.event_name == 'push' }}
