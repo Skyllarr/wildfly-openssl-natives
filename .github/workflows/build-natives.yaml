@@ -46,7 +46,7 @@ jobs:
           openssl version -v
           mvn -B package --file pom.xml
       - if: matrix.os == 'windows-latest'
-        name: Build with Microsoft Visual Studio native tools command prompt and Maven
+        name: Build with Microsoft Visual Studio native tools command prompt and Maven 
         env:
           VCVARS: ${{ matrix.vcvars }}
         shell: cmd
