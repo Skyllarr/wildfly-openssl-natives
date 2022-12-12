@@ -46,17 +46,15 @@ jobs:
           openssl version -v
           mvn -B package --file pom.xml
       - if: matrix.os == 'windows-latest'
-        name: Build with Microsoft Visual Studio native tools command prompt and Maven 
+        name: Build with Microsoft Visual Studio native tools command prompt and Maven
         env:
           VCVARS: ${{ matrix.vcvars }}
         shell: cmd
         run: |
-          set PATH = "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;%PATH%"
+          PATH "C:\vcpkg\installed\x64-windows\tools\openssl;C:\vcpkg\installed\x64-windows\tools\openssl\bin;"%PATH%
           echo %PATH%
           openssl version -v
           call "%VCVARS%" x64
-          set PATH = "C:\Users\runneradmin\AppData\Local\vcpkg\installed\x86-windows\tools\openssl;C:\vcpkg\packages\openssl_x64-windows\share\openssl;%PATH%"
-          echo %PATH%
           openssl version -v
           mvn -B package --file pom.xml
       - if: ${{ github.event_name == 'push' }}
