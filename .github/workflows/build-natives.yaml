@@ -52,7 +52,7 @@ jobs:
           $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl;$Env:PATH"
           echo $Env:PATH
           openssl version -v
-          "%VCVARS%" x64
+          %VCVARS% x64"
           echo $Env:PATH
           openssl version -v
           mvn -B package --file pom.xml
