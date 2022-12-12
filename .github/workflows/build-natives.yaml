@@ -38,6 +38,7 @@ jobs:
         run: |
           vcpkg install openssl:x64-windows
           $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl;$Env:PATH"
+          echo $Env:PATH
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
         run: |
@@ -51,7 +52,9 @@ jobs:
         run: |
           call "%VCVARS%" x64
           $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl\bin;$Env:PATH"
+          set PATH = "C:\vcpkg\installed\x64-windows\tools\openssl\bin;%PATH%"
           echo $Env:PATH
+          echo %PATH%
           openssl version -v
           mvn -B package --file pom.xml
       - if: ${{ github.event_name == 'push' }}
