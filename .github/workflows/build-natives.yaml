@@ -37,10 +37,6 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           vcpkg install openssl:x64-windows
-          Get-ChildItem "C:\vcpkg\installed\x64-windows\tools\openssl\"
-          $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl;$Env:PATH"
-          echo $Env:PATH
-          openssl version -v
       - if: matrix.os != 'windows-latest'
         name: Build with Maven
         run: |
@@ -54,7 +50,6 @@ jobs:
         run: |
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64          
           set PATH=C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%
-          echo %PATH%
           openssl version -v
           mvn -B package --file pom.xml
       - if: ${{ github.event_name == 'push' }}
