@@ -37,6 +37,7 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           vcpkg install openssl:x64-windows
+          Get-ChildItem "C:\vcpkg\installed\x64-windows\tools\openssl\"
           $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl;$Env:PATH"
           echo $Env:PATH
           openssl version -v
@@ -52,7 +53,8 @@ jobs:
         shell: cmd
         run: |
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64          
-          set PATH="C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%"
+          doskey openssl = "C:\vcpkg\installed\x64-windows\tools\openssl"
+          openssl version -v
           echo %PATH%
           openssl version -v
           mvn -B package --file pom.xml
