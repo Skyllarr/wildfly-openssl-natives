@@ -50,11 +50,9 @@ jobs:
           VCVARS: ${{ matrix.vcvars }}
         shell: cmd
         run: |
-          set PATH="C:\vcpkg\installed\x64-windows\tools\openssl\bin;%PATH%"
+          set PATH="C:\vcpkg\installed\x64-windows\tools\openssl\bin;C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%"
           echo %PATH%
           call "%VCVARS%" x64
-          $Env:PATH="C:\vcpkg\installed\x64-windows\tools\openssl\bin;$Env:PATH"
-          set PATH="C:\vcpkg\installed\x64-windows\tools\openssl\bin;%PATH%"
           echo %PATH%
           openssl version -v
           mvn -B package --file pom.xml
