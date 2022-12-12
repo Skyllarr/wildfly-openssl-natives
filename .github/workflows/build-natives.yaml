@@ -48,15 +48,12 @@ jobs:
         name: Build with Microsoft Visual Studio native tools command prompt and Maven
         env:
           VCVARS: ${{ matrix.vcvars }}
-        shell: cmd
         run: |
-          set PATH = "C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%"
-          echo %PATH%
-          setx /m PATH "C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%"
+          $Env:PATH = "C:\vcpkg\installed\x64-windows\tools\openssl;$Env:PATH"
+          echo $Env:PATH
           openssl version -v
-          echo %PATH%
           call "%VCVARS%" x64
-          echo %PATH%
+          echo $Env:PATH
           openssl version -v
           mvn -B package --file pom.xml
       - if: ${{ github.event_name == 'push' }}
