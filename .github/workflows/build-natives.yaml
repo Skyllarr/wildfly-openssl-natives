@@ -59,6 +59,18 @@ jobs:
           git clone https://github.com/wildfly-security/wildfly-openssl.git
           cd wildfly-openssl
           mvn clean install -Dversion.org.wildfly.openssl.natives=2.2.3.CR1-SNAPSHOT
+      - if: matrix.os == 'windows-latest'
+        name: Test
+        env:
+          VCVARS: ${{ matrix.vcvars }}
+        shell: cmd
+        run: |
+          call "%VCVARS%" x64          
+          set PATH=C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%
+          openssl version -v
+          git clone https://github.com/wildfly-security/wildfly-openssl.git
+          cd wildfly-openssl
+          mvn clean install -Dversion.org.wildfly.openssl.natives=2.2.3.CR1-SNAPSHOT
       - if: ${{ github.event_name == 'push' }}
         name: Archive the built native artifacts if this is a tag
         uses: actions/upload-artifact@v2
