@@ -54,10 +54,6 @@ jobs:
           mvn -B package --file pom.xml
           git clone https://github.com/Skyllarr/wildfly-openssl-natives.git
           cd wildfly-openssl-natives
-          mvn clean install -Dversion.org.wildfly.openssl.natives=2.2.3.CR1-SNAPSHOT   
-          cd ..
-          git clone https://github.com/wildfly-security/wildfly-openssl.git
-          cd wildfly-openssl
           mvn clean install -Dversion.org.wildfly.openssl.natives=2.2.3.CR1-SNAPSHOT
       - if: matrix.os == 'windows-latest'
         name: Test
