@@ -52,9 +52,6 @@ jobs:
           set PATH=C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%
           openssl version -v
           mvn -B package --file pom.xml
-          git clone https://github.com/Skyllarr/wildfly-openssl-natives.git
-          cd wildfly-openssl-natives
-          mvn clean install -Dversion.org.wildfly.openssl.natives=2.2.3.CR1-SNAPSHOT
       - if: matrix.os == 'windows-latest'
         name: Test
         env:
