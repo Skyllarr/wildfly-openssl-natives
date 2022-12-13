@@ -60,6 +60,7 @@ jobs:
         run: |
           call "%VCVARS%" x64          
           set PATH=C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%
+          set CLASSPATH=D:\a\wildfly-openssl-natives\wildfly-openssl-natives\windows-x86_64\target\;%CLASSPATH%
           openssl version -v
           git clone https://github.com/wildfly-security/wildfly-openssl.git
           cd wildfly-openssl
