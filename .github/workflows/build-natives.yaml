@@ -88,9 +88,10 @@ jobs:
           sudo make
           sudo make test
           sudo make install
-          cd /etc/ld.so.conf.d/
-          echo "/usr/local/ssl/lib64"  > openssl-3.0.7.conf
+          sudo cd /etc/ld.so.conf.d/
+          sudo echo "/usr/local/ssl/lib64"  > openssl-3.0.7.conf
           sudo ldconfig -v
+          cd ~
           export PATH=/usr/local/ssl/bin:$PATH
           which openssl
           openssl version
