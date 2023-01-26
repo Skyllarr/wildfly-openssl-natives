@@ -89,9 +89,13 @@ jobs:
           sudo make test
           sudo make install
           cd /etc/ld.so.conf.d/
-          sudo echo "/usr/local/ssl/lib64"  > openssl-3.0.7.conf
+          echo "/usr/local/ssl/lib64" | sudo tee openssl-3.0.7.conf
           sudo ldconfig -v
-          cd ~
+
+      - if: matrix.os == 'ubuntu-latest'
+        name: Run tests with the built Linux native
+        working-directory: wildfly-openssl
+        run: |
           export PATH=/usr/local/ssl/bin:$PATH
           which openssl
           openssl version
