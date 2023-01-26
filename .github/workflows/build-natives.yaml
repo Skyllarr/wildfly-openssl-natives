@@ -98,8 +98,7 @@ jobs:
           export PATH=/usr/local/ssl/bin:$PATH
           which openssl
           openssl version
-          mvn clean install -DskipTests
-          export WILDFLY_OPENSSL_NATIVES_VERSION=$(echo '${project.version}' | mvn help:evaluate | grep -v '^[[]')
+          export WILDFLY_OPENSSL_NATIVES_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           echo Running tests with WildFly OpenSSL Natives $WILDFLY_OPENSSL_NATIVES_VERSION
           mvn -B verify --file pom.xml -Dorg.wildfly.openssl.path="/usr/local/src/openssl-3.0.7" -Dversion.org.wildfly.openssl.natives=$WILDFLY_OPENSSL_NATIVES_VERSION
       - if: ${{ github.event_name == 'push' }}
