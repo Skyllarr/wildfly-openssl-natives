@@ -91,7 +91,6 @@ jobs:
           cd /etc/ld.so.conf.d/
           echo "/usr/local/ssl/lib64" | sudo tee openssl-3.0.7.conf
           sudo ldconfig -v
-
       - if: matrix.os == 'ubuntu-latest'
         name: Run tests with the built Linux native
         working-directory: wildfly-openssl
@@ -99,6 +98,9 @@ jobs:
           export PATH=/usr/local/ssl/bin:$PATH
           which openssl
           openssl version
+          export WILDFLY_OPENSSL_NATIVES_VERSION=$(echo '${project.version}' | mvn help:evaluate | grep -v '^[[]')
+          echo Running tests with WildFly OpenSSL Natives $WILDFLY_OPENSSL_NATIVES_VERSION
+          mvn -B verify --file pom.xml -Dorg.wildfly.openssl.path="C:\vcpkg\installed\x64-windows\tools\openssl" -Dversion.org.wildfly.openssl.natives=%WILDFLY_OPENSSL_NATIVES_VERSION%
       - if: ${{ github.event_name == 'push' }}
         name: Archive the built native artifacts if this is a tag
         uses: actions/upload-artifact@v2
