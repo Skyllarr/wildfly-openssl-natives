@@ -84,10 +84,10 @@ jobs:
           sudo wget https://www.openssl.org/source/openssl-3.0.7.tar.gz
           sudo tar -xf openssl-3.0.7.tar.gz
           cd openssl-3.0.7
-          ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib
-          make
-          make test
-          make install
+          sudo ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib
+          sudo make
+          sudo make test
+          sudo make install
           cd /etc/ld.so.conf.d/
           echo "/usr/local/ssl/lib64"  > openssl-3.0.7.conf
           sudo ldconfig -v
