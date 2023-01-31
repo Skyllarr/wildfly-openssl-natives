@@ -15,7 +15,7 @@ jobs:
         working-directory: main
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest, macos-latest]
         include:
           - os: windows-latest
             vcvars: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat
@@ -47,10 +47,11 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           vcpkg install openssl:x64-windows
-      - if: matrix.os != 'windows-latest'
+      - if: matrix.os == 'macos-latest'
         name: Build with Maven
         run: |
-          openssl version -v
+          export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+          openssl version 
           mvn -B package --file pom.xml
       - if: matrix.os == 'windows-latest'
         name: Build with Microsoft Visual Studio native tools command prompt and Maven
@@ -75,6 +76,15 @@ jobs:
           for /f "tokens=3 delims=<> skip=1" %%v in ('findstr "<version>" ..\main\pom.xml') do set WILDFLY_OPENSSL_NATIVES_VERSION=%%v
           echo Running tests with WildFly OpenSSL Natives %WILDFLY_OPENSSL_NATIVES_VERSION%
           mvn -B verify --file pom.xml -Dorg.wildfly.openssl.path="C:\vcpkg\installed\x64-windows\tools\openssl" -Dversion.org.wildfly.openssl.natives=%WILDFLY_OPENSSL_NATIVES_VERSION%
+      - if: matrix.os == 'macos-latest'
+        name: Install latest version of OpenSSL in MacOS
+        working-directory: wildfly-openssl
+        run: |
+          export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+          openssl version
+          export WILDFLY_OPENSSL_NATIVES_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo Running tests with WildFly OpenSSL Natives $WILDFLY_OPENSSL_NATIVES_VERSION
+          mvn -B verify --file pom.xml -Dorg.wildfly.openssl.path="/usr/local/src/openssl-3.0.7" -Dversion.org.wildfly.openssl.natives=$WILDFLY_OPENSSL_NATIVES_VERSION
       - if: ${{ github.event_name == 'push' }}
         name: Archive the built native artifacts if this is a tag
         uses: actions/upload-artifact@v2
