@@ -47,11 +47,6 @@ jobs:
         name: Install Full OpenSSL Library
         run: |
           vcpkg install openssl:x64-windows
-      - if: matrix.os != 'windows-latest'
-        name: Build with Maven
-        run: |
-          openssl version -v
-          mvn -B package --file pom.xml
       - if: matrix.os == 'windows-latest'
         name: Build with Microsoft Visual Studio native tools command prompt and Maven
         env:
@@ -89,6 +84,12 @@ jobs:
           cd /etc/ld.so.conf.d/
           echo "/usr/local/ssl/lib64" | sudo tee openssl-3.0.7.conf
           sudo ldconfig -v
+      - if: matrix.os == 'ubuntu-latest'
+        name: Build with Maven
+        run: |
+          export PATH=/usr/local/ssl/bin:$PATH
+          openssl version 
+          mvn -B package --file pom.xml
       - if: matrix.os == 'ubuntu-latest'
         name: Run tests with the built Linux native
         working-directory: wildfly-openssl
