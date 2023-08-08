@@ -52,7 +52,7 @@ jobs:
         run: |
           export PATH="/usr/local/opt/openssl@3/bin:$PATH"
           openssl version 
-          mvn -B package --file pom.xml
+          mvn -B install --file pom.xml
       - if: matrix.os == 'windows-latest'
         name: Build with Microsoft Visual Studio native tools command prompt and Maven
         env:
