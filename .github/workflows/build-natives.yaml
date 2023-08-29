@@ -75,7 +75,7 @@ jobs:
         shell: cmd
         run: |
           call "%VCVARS%" x64
-          dir C:\vcpkg\installed\x64-windows\bin
+          dir C:\vcpkg\installed\x64-windows
           echo "C:\vcpkg\installed\x64-windows\bin\openssl :"
           dir C:\vcpkg\installed\x64-windows\bin\openssl          
           set PATH=C:\vcpkg\installed\x64-windows\bin;%PATH%
