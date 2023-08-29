@@ -76,6 +76,7 @@ jobs:
         run: |
           call "%VCVARS%" x64
           set PATH=C:\vcpkg\installed\x64-windows\tools\openssl;%PATH%
+          dir C:\vcpkg\installed\x64-windows\tools\
           openssl version -v
           for /f "tokens=3 delims=<> skip=1" %%v in ('findstr "<version>" ..\main\pom.xml') do set WILDFLY_OPENSSL_NATIVES_VERSION=%%v
           echo Running tests with WildFly OpenSSL Natives %WILDFLY_OPENSSL_NATIVES_VERSION%
