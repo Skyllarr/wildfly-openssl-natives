@@ -73,6 +73,10 @@ jobs:
           openssl version -v
           where openssl
           mvn -B install --file pom.xml
+          echo "here"
+          cd/
+          dir /s openssl.exe
+          echo "here"
       - if: matrix.os == 'windows-latest'
         name: Run tests with the built Windows native
         env:
@@ -81,9 +85,6 @@ jobs:
         shell: cmd
         run: |
           call "%VCVARS%" x64
-          echo "here"
-          dir openssl.exe /s
-          echo "here"
           dir C:\vcpkg\installed\x64-windows
           dir C:\vcpkg\installed\x64-windows\bin
           echo "C:\vcpkg\installed\x64-windows\bin\openssl :"
