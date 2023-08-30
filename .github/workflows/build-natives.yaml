@@ -70,13 +70,13 @@ jobs:
           set PATH=C:\vcpkg\installed\x64-windows\bin;%PATH%
           set PATH=C:\vcpkg\installed\x64-windows\lib;C:\vcpkg\packages\openssl_x64-windows\bin;%PATH%
           vcpkg integrate install
-          openssl version -v
-          where openssl
-          mvn -B install --file pom.xml
+          openssl version -v          
           echo "here"
           cd/
           dir /s openssl.exe
           echo "here"
+          where openssl
+          mvn -B install --file pom.xml
       - if: matrix.os == 'windows-latest'
         name: Run tests with the built Windows native
         env:
