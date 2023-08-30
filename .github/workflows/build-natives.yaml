@@ -81,7 +81,9 @@ jobs:
         shell: cmd
         run: |
           call "%VCVARS%" x64
-          dir C:\vcpkg\packages\openssl-windows_x64-windows\openssl\bin
+          dir C:\vcpkg\downloads\tools\
+          dir C:\vcpkg\downloads\tools\perl\
+          dir C:\vcpkg\downloads\tools\perl\5.32.1.1\c\bin
           dir C:\vcpkg\packages
           dir C:\vcpkg\installed
           dir C:\vcpkg\packages\openssl_x64-windows\bin\openssl
