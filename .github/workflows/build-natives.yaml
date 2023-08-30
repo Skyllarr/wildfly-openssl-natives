@@ -81,20 +81,21 @@ jobs:
         shell: cmd
         run: |
           call "%VCVARS%" x64
-          dir C:\vcpkg\installed\x64-windows
-          dir C:\vcpkg\installed\x64-windows\bin
-          echo "C:\vcpkg\installed\x64-windows\bin\openssl :"
-          dir C:\vcpkg\packages\openssl_x64-windows\share\openssl
-          dir C:\vcpkg\packages\openssl_x64-windows\share
-          dir C:\vcpkg\packages\openssl_x64-windows
-          dir C:\vcpkg\packages\openssl_x64-windows\bin
-          dir C:\vcpkg\packages\openssl_x64-windows\bin\openssl
-          dir C:\vcpkg\packages
-          dir C:\vcpkg\installed\x64-windows\include
-          dir C:\vcpkg\installed\x64-windows\include\openssl
-          dir C:\vcpkg\packages\openssl-windows_x64-windows
-          dir C:\vcpkg\packages\openssl-windows_x64-windows\openssl
+#          dir C:\vcpkg\installed\x64-windows
+#          dir C:\vcpkg\installed\x64-windows\bin
+#          echo "C:\vcpkg\installed\x64-windows\bin\openssl :"
+#          dir C:\vcpkg\packages\openssl_x64-windows\share\openssl
+#          dir C:\vcpkg\packages\openssl_x64-windows\share
+#          dir C:\vcpkg\packages\openssl_x64-windows
+#          dir C:\vcpkg\packages\openssl_x64-windows\bin
+#          dir C:\vcpkg\packages\openssl_x64-windows\bin\openssl
+#          dir C:\vcpkg\packages
+#          dir C:\vcpkg\installed\x64-windows\include
+#          dir C:\vcpkg\installed\x64-windows\include\openssl
+#          dir C:\vcpkg\packages\openssl-windows_x64-windows
+#          dir C:\vcpkg\packages\openssl-windows_x64-windows\openssl
           dir C:\vcpkg\packages\openssl-windows_x64-windows\openssl\bin
+          dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg"
           dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg\installed"
           dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg\installed\x64-windows"
           dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg\installed\x64-windows\tools"
