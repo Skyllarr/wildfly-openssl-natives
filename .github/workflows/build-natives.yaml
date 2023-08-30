@@ -47,10 +47,7 @@ jobs:
       - if: matrix.os == 'windows-latest'
         name: Install Full OpenSSL Library
         run: |
-          vcpkg upgrade --no-dry-run
-          vcpkg install openssl:x64-windows
-          vcpkg upgrade --no-dry-run
-          vcpkg list openssl
+          vcpkg install openssl[core,tools] --triplet x64-windows
       - if: matrix.os == 'macos-latest'
         name: Build WildFly OpenSSL natives
         id: build-wildfly-openssl-natives
@@ -67,9 +64,7 @@ jobs:
         shell: cmd
         run: |
           call "%VCVARS%" x64
-          set PATH=C:\vcpkg\installed\x64-windows\bin;%PATH%
-          set PATH=C:\vcpkg\installed\x64-windows\lib;C:\vcpkg\packages\openssl_x64-windows\bin;%PATH%
-          vcpkg integrate install
+          set PATH=C:\vcpkg\installed\x64-windows\tools;%PATH%
           openssl version -v
           where openssl
           mvn -B install --file pom.xml
@@ -81,13 +76,7 @@ jobs:
         shell: cmd
         run: |
           call "%VCVARS%" x64
-          dir C:\vcpkg\downloads\tools\
-          dir C:\vcpkg\downloads\tools\perl\
-          dir C:\vcpkg\downloads\tools\perl\5.32.1.1\c\bin
-          dir C:\vcpkg\packages
-          dir C:\vcpkg\installed
-          dir C:\vcpkg\packages\openssl_x64-windows\bin\openssl
-          set PATH=C:\vcpkg\packages\openssl-windows_x64-windows;C:\vcpkg\installed\x64-windows\include\openssl;C:\vcpkg\packages\openssl_x64-windows\tools;C:\vcpkg\installed\x64-windows\lib;C:\vcpkg\installed\x64-windows\include;C:\vcpkg\installed\x64-windows\bin;C:\vcpkg\packages\openssl_x64-windows\bin\openssl;%PATH%
+          set PATH=C:\vcpkg\installed\x64-windows\tools;%PATH%
           where openssl
           openssl version -v
           for /f "tokens=3 delims=<> skip=1" %%v in ('findstr "<version>" ..\main\pom.xml') do set WILDFLY_OPENSSL_NATIVES_VERSION=%%v
